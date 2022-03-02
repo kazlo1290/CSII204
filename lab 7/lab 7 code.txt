@@ -1,0 +1,92 @@
+bod 1:
+package lab7;
+import acm.program.*;
+public class bod1 extends ConsoleProgram {
+	public void run(){
+		for(int i=0; i<20; i++){
+			if(i == 0){
+				print(i+" ");
+			}
+			else if(i % 2 == 0){
+				print(i+" ");
+			}
+		}
+	}
+}
+-----------------------------------------------------------------
+bodlogo 2:
+package lab7;
+import acm.program.*;
+public class bod2 extends ConsoleProgram {
+	public void run(){
+		int n, k;
+		long t = 1;
+		n = readInt("Enter n: ");
+		k = readInt("Enter k: ");
+		for(int i=1; i<=n; i++){
+			t = 1;
+			for(int j=1; j<=k; j++){
+				if(j == k){
+					t*=i;
+					print(i + " = ");
+				}
+				else{
+					t *= i;
+					print(i + " * " );
+				}
+			}
+			print(t);
+			print("\n");
+		}
+	}
+}
+---------------------------------------------------------------------
+bodlogo 3:
+package lab7;
+import acm.program.*;
+public class bod3 extends ConsoleProgram {
+	public void run(){
+		println("N too hurtelh pibonachiin too oloh.");
+		int n = readInt("Enter n: ");
+		int a, b, c;
+		a = 0;
+		b = 1;
+		println(a);
+		println(b);
+		for(int i=0; ; i++){
+			c = a + b;
+			a = b;
+			b = c;
+			if(n <= c)
+				break;
+			println(c);
+		}
+	}
+}
+-------------------------------------------------------------------
+bodlogo 4:
+package lab7;
+import acm.program.*;
+public class bod4 extends ConsoleProgram {
+	public boolean tugsTooEseh(int a){
+		int s = 0;
+		for(int i=1; i<a; i++){
+			if(a % i == 0){
+				s += i;
+			}
+		}
+		if(a == s)
+			return true;
+		else
+			return false;
+	}
+	public void run(){
+		int n = readInt("N-toog oruulna uu: ");
+		for(int i=1; i<n; i++){
+			if(tugsTooEseh(i)){
+				println(i);
+			}
+		}
+	}
+}
+------------------------------------------------------------------

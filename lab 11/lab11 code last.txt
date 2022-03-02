@@ -1,0 +1,357 @@
+//Hangman code ------------------------------------------------------------------------------
+import acm.graphics.GLine;
+import acm.graphics.GOval;
+import acm.program.*;
+import acm.util.RandomGenerator;
+import java.lang.*;
+import java.util.Scanner;
+public class hangman extends GraphicsProgram {
+	void drawHangman(int i){
+			if(i == 0){
+				GLine hol2 = new GLine(300, 375, 275, 500);
+				add(hol2);
+//				 println("GAME OVER!");
+//				 println("   ____________");
+//				 println("   |          _|_");
+//				 println("   |         /   \\");
+//				 println("   |        |     |");
+//				 println("   |         \\_ _/");
+//				 println("   |          _|_");
+//				 println("   |         / | \\");
+//				 println("   |          / \\ ");
+//				 println("___|___      /   \\");
+			}
+			else if(i == 1) {
+				GLine hol1 = new GLine(300, 375, 325, 500);
+				add(hol1);
+//				 println("   ____________");
+//				 println("   |          _|_");
+//				 println("   |         /   \\");
+//				 println("   |        |     |");
+//				 println("   |         \\_ _/");
+//				 println("   |           |");
+//				 println("   |           |");
+//				 println("   |          / \\");
+//				 println("___|___      /   \\");
+			}
+			else if(i == 2) {
+				GLine gar2 = new GLine(300, 275, 200, 325);
+				add(gar2);
+//				println("   ____________");
+//				println("   |          _|_");
+//				println("   |         /   \\");
+//				println("   |        |     |");
+//				println("   |         \\_ _/");
+//				println("   |           |");
+//				println("   |           |");
+//				println("   |          /");
+//				println("___|___      / ");
+			}
+			else if(i == 3) {
+				GLine gar1 = new GLine(300, 275, 400, 325);
+				add(gar1);
+//				 println("   ____________");
+//				 println("   |          _|_");
+//				 println("   |         /   \\");
+//				 println("   |        |     |");
+//				 println("   |         \\_ _/");
+//				 println("   |           |");
+//				 println("   |           |");
+//				 println("   |");
+//				 println("___|___");
+			}
+			else if(i == 4) {
+				GLine biy = new GLine(300, 250, 300, 375);
+				add(biy);
+//				 println("   ____________");
+//				 println("   |          _|_");
+//				 println("   |         /   \\");
+//				 println("   |        |     |");
+//				 println("   |         \\_ _/");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("___|___");
+			}
+			else if(i == 5) {
+				GOval tolgoi = new GOval(250, 150, 100, 100);
+				add(tolgoi);
+//				 println("   ____________");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   | ");
+//				 println("___|___");
+			}
+			else if(i == 6) {
+				GLine utas = new GLine(300, 100, 300, 150);
+				add(utas);
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("___|___");
+			}
+			else if(i == 7) {
+				GLine shongiinMod2 = new GLine(100, 100, 300, 100);
+				add(shongiinMod2);
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("   |");
+//				 println("___|___");
+			}
+			else if(i == 8) {
+				GLine shongiinMod = new GLine(100, 100, 100, 500);
+				add(shongiinMod);
+//				 println();
+//				 println();
+//				 println();
+//				 println();
+//				 println();
+//				 println("___|___");
+			}
+		}
+	String getHariult(int i){
+		switch(i){
+			case 1: return "sar";
+			case 2: return "o";
+			case 3: return "anis";
+			case 4: return "huls";
+			default: return "moil";	
+		}
+	}
+	String asuultRandom(int i){
+		switch(i){
+			case 1: return "Tsasan deer mungun ayga ter yu ve?";
+			case 2: return "Nomiin gold yu baidag ve?";
+			case 3: return "Уулын хажууд Улаан сувд?";
+			case 4: return "Дам дам бучийхай Давхар давхар бучийхай Дээрээ нэг цацагтай?";
+			default: return "Хар морь Сүүлээ дааж ядна?";
+		}
+	}
+	String initGame(){
+		RandomGenerator rgen = RandomGenerator.getInstance();
+		int randomNum = rgen.nextInt(1, 5);
+		String hariult = getHariult(randomNum);
+		String asuult = asuultRandom(randomNum);
+		println(asuult);
+		return hariult;
+	}
+	void playGame(){
+		String answer = initGame();
+		char[] zuraas = new char[answer.length()];
+		for(int i=0; i<answer.length(); i++){
+			zuraas[i] = '*';
+		}
+		int ami = 8;
+		int amiHasah = 0;
+		while(ami >= 1){
+			println("------------------------------------------------------------------------");
+			drawHangman(ami);
+			println("Tanii ami: " + ami);
+			print("Taah ug: ");
+			for(int i=0; i<answer.length(); i++){
+				print(zuraas[i]);
+			}
+			println("");
+			int win = 0;
+			String useg = readLine("Ta useg usgeer taana uu: ");
+			for(int i=0; i<answer.length(); i++){
+				if(answer.charAt(i) == useg.charAt(0)){
+						zuraas[i] = useg.charAt(0);
+						amiHasah = 0;
+						break;
+				}
+				else {
+					amiHasah = 1;
+				}
+			}
+			if(amiHasah == 1){
+				ami--;
+			}
+			for(int i=0; i<answer.length(); i++){
+				if(answer.charAt(i) == zuraas[i])
+					win = 1;
+				else{
+					win = 0;
+					break;
+				}
+			}
+			if(win == 1){
+				println("------------------------------------------------------------------------");
+				println("Zuv taasan hariult: " + answer);
+				println("Ta hojloo!!!");
+				break;
+			}
+		}
+		if(ami == 0){
+			println("------------------------------------------------------------------------");
+			drawHangman(0);
+			println("Ta hojigdloo!!!");
+		}
+	}
+	public void run(){
+		playGame();
+	}
+}
+// lab 11 dasgal 2 (drag object) -----------------------------------------------------------------
+import java.awt.Color;
+import java.awt.event.*;
+
+import acm.graphics.GObject;
+import acm.graphics.GOval;
+import acm.graphics.GPoint;
+import acm.graphics.GPolygon;
+import acm.graphics.GRect;
+import acm.program.*;
+import acm.util.RandomGenerator;
+public class lab11Dasgal2 extends GraphicsProgram {
+	public void init(){
+		addKeyListeners();
+		addMouseListeners();
+	}
+	void randomStar(){
+		RandomGenerator rgen = RandomGenerator.getInstance();
+		int length = rgen.nextInt(50, 100);
+		int x = rgen.nextInt(100, 500);
+		int y = rgen.nextInt(100, 500);
+		GPolygon star = new GPolygon();
+		star.addVertex(length, 0);
+		star.addPolarEdge(length, -36);
+		star.addPolarEdge(length, -108);
+		star.addPolarEdge(length, 36);
+		star.addPolarEdge(length, -36);
+		star.addPolarEdge(length, 108);
+		star.addPolarEdge(length, 36);
+		star.addPolarEdge(length, 180);
+		star.addPolarEdge(length, 108);
+		star.addPolarEdge(length, -108);
+		star.setFilled(true);
+		star.setFillColor(Color.CYAN);
+		add(star, x, y);
+	}
+   	GOval randomCircle(){
+		RandomGenerator rgen = RandomGenerator.getInstance();
+		int x = rgen.nextInt(100, 500);
+		int y = rgen.nextInt(100, 500);
+		int length = rgen.nextInt(100, 300);
+		int height = rgen.nextInt(100, 300);
+		GOval dugui = new GOval(x, y, length, height);
+		dugui.setFilled(true);
+		dugui.setFillColor(Color.RED);
+		return dugui;
+	}
+	GRect randomRect(){
+		RandomGenerator rgen = RandomGenerator.getInstance();
+		int x = rgen.nextInt(100, 500);
+		int y = rgen.nextInt(100, 500);
+		int length = rgen.nextInt(100, 300);
+		int height = rgen.nextInt(100, 300);
+		GRect dorvoljin = new GRect(x, y, length, height);
+		dorvoljin.setFilled(true);
+		dorvoljin.setFillColor(Color.BLUE);
+		return (dorvoljin);
+	}
+	void createPentagon(){
+		RandomGenerator rgen = RandomGenerator.getInstance();
+		int side = rgen.nextInt(100, 200);
+		int x = rgen.nextInt(100, 500);
+		int y = rgen.nextInt(100, 500);
+		GPolygon tav = new GPolygon();
+		tav.addVertex(-side, 0);
+		tav.addPolarEdge(side, 36);
+		tav.addPolarEdge(side, -36);
+		tav.addPolarEdge(side, -108);
+		tav.addPolarEdge(-side, 0);
+		tav.addPolarEdge(side, 108);
+		tav.setFilled(true);
+		tav.setFillColor(Color.YELLOW);
+		add(tav, x, y);
+	}
+	void randomRombo(){
+		GPolygon dorov = new GPolygon();
+		RandomGenerator rgen = RandomGenerator.getInstance();
+		int side = rgen.nextInt(100, 200);
+		int x = rgen.nextInt(100, 500);
+		int y = rgen.nextInt(100, 500);
+		dorov.addVertex(-side, 0);
+		dorov.addPolarEdge(side, 60);
+		dorov.addPolarEdge(side, 0);
+		dorov.addPolarEdge(side, -120);
+		dorov.setFilled(true);
+		dorov.setFillColor(Color.PINK);
+		add(dorov, x, y);
+	}
+	void createSumSymbol(){
+		GPolygon nemeh = new GPolygon();
+		RandomGenerator rgen = RandomGenerator.getInstance();
+		int side = rgen.nextInt(100, 200);
+		int x = rgen.nextInt(100, 500);
+		int y = rgen.nextInt(100, 500);
+		nemeh.addVertex(-side/3, -side/6);
+		nemeh.addPolarEdge(side, 0);
+		nemeh.addPolarEdge(side, 90);
+		nemeh.addPolarEdge(side, 0);
+		nemeh.addPolarEdge(side, -90);
+		nemeh.addPolarEdge(side, 0);
+		nemeh.addPolarEdge(side, -90);
+		nemeh.addPolarEdge(side, -180);
+		nemeh.addPolarEdge(side, -90);
+		nemeh.addPolarEdge(side, -180);
+		nemeh.addPolarEdge(side, 90);
+		nemeh.addPolarEdge(side, -180);
+		nemeh.setFilled(true);
+		nemeh.setFillColor(Color.GREEN);
+		add(nemeh, x, y);
+	}
+	public void keyTyped(KeyEvent e){
+		if(e.getKeyChar() == 'c'){
+			add(randomCircle());
+			println("Ta " + e.getKeyChar() + " darlaa.");
+		}
+		if(e.getKeyChar() == 'r'){
+			add(randomRect());
+			println("Ta " + e.getKeyChar() + " darlaa.");
+		}
+		if(e.getKeyChar() == 'p'){
+			createPentagon();
+			println("Ta " + e.getKeyChar() + " darlaa.");
+		}
+		if(e.getKeyChar() == 'b'){
+			randomRombo();
+			println("Ta " + e.getKeyChar() + " darlaa.");
+		}
+		if(e.getKeyChar() == 's'){
+			createSumSymbol();
+			println("Ta " + e.getKeyChar() + " darlaa.");
+		}
+		if(e.getKeyChar() == 't'){
+			randomStar();
+			println("Ta " + e.getKeyChar() + " darlaa.");
+		}
+	}
+    private GObject gobj;
+    private GPoint point;
+    public void mouseClicked(MouseEvent e){
+ 	   gobj = getElementAt(e.getX(),e.getY());
+ 	   remove(gobj);
+    }
+    
+    public void mousePressed(MouseEvent e){
+ 	   point = new GPoint(e.getPoint());
+ 	   gobj = getElementAt(point);
+    }
+    public void mouseDragged(MouseEvent e){
+ 	   if(gobj != null){
+ 		   gobj.move(e.getX()-point.getX(),e.getY()-point.getY());
+ 		   point = new GPoint(e.getPoint());
+ 	   }
+    }
+}

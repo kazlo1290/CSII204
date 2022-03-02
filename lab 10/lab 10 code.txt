@@ -1,0 +1,123 @@
+bodlogo 1:
+import java.awt.Container;
+import java.awt.EventQueue;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class DisplayImage extends JFrame {
+// initUI() gedeg functioniig duudaj baigaa baiguulagch 
+    public DisplayImage() {
+
+        initUI();
+    }
+// utga butsaahgui initUI nertei function
+    private void initUI() {       
+        // ii objectod loadImage() functioniig duudaj utga onooj baina
+        ImageIcon ii = loadImage();
+        // JLabel classiin label objectiig baiguulagchaar uusgej baina.
+        JLabel label = new JLabel(ii);
+        
+        createLayout(label);
+
+        setTitle("Image");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    private ImageIcon loadImage() {
+
+//      ImageIcon ii = new ImageIcon("src/images/snake.jpg");
+    	ImageIcon ii = new ImageIcon("D:/zura/zurag1");
+        return ii;
+    }
+
+    private void createLayout(JComponent... arg) {
+
+        Container pane = getContentPane();
+        GroupLayout gl = new GroupLayout(pane);
+        pane.setLayout(gl);
+
+        gl.setAutoCreateContainerGaps(true);
+
+        gl.setHorizontalGroup(gl.createSequentialGroup()
+                .addComponent(arg[0])
+        );
+
+        gl.setVerticalGroup(gl.createParallelGroup()
+                .addComponent(arg[0])
+        );
+
+        pack();
+    }
+
+    public static void main(String[] args) {
+
+        EventQueue.invokeLater(() -> {
+            DisplayImage ex = new DisplayImage();
+            ex.setVisible(true);
+        });
+    }
+}
+-----------------------------------------------------------------------------------------------
+bodlogo 2:
+import acm.program.*;
+import acm.graphics.*;
+public class bod2 extends GraphicsProgram {
+	public void run(){
+		// Doorh kod ni add comandaar GImage classiin objectiig helveh uildel
+		// new GImage("zuragName.jpg", x, y) ene ni GImage classiin baiguulagch function bogood object uusgene
+		add(new GImage("D:/zura/javaLog.jpg"));
+	}
+}
+------------------------------------------------------------------------------------------------
+bodlogo 3:
+import acm.program.*;
+import acm.util.RandomGenerator;
+import acm.graphics.*;
+public class bod3 extends GraphicsProgram {
+//	sanamsargui zurguudiig gargaj ogoh function
+	GImage randomZurag(int i){
+		switch(i){
+		case 1:
+			RandomGenerator rand = RandomGenerator.getInstance();
+//			int too = rand.nextInt(1, 5);
+			int too = 0;
+			GImage neg = new GImage("D:/zura/bod3/neg.jpg", too*100, 0);
+			return neg;
+		case 2:
+			RandomGenerator rand2 = RandomGenerator.getInstance();
+//			int a = rand2.nextInt(1, 5);
+			int a = 1;
+			GImage hoyr = new GImage("D:/zura/bod3/hoyr.jpg", a*100, 0);
+			return hoyr;
+		case 3:
+			RandomGenerator rand3 = RandomGenerator.getInstance();
+//			int b = rand3.nextInt(1, 5);
+			int b = 2;
+			GImage gurav = new GImage("D:/zura/bod3/gurav.jpg", b*100, 0);
+			return gurav;
+		case 4:
+			RandomGenerator rand4 = RandomGenerator.getInstance();
+//			int c = rand4.nextInt(1, 5);
+			int c = 3;
+			GImage duruv = new GImage("D:/zura/bod3/duruv.jpg", c*100, 0);
+			return duruv;
+		default:
+			RandomGenerator rand5 = RandomGenerator.getInstance();
+//			int d = rand5.nextInt(1, 5);
+			int d = 4;
+			GImage tav = new GImage("D:/zura/bod3/tav.png", d*100, 0);
+			return tav;
+		}
+	}
+	public void run(){
+		for(int i=1; i<=5; i++){
+			RandomGenerator rand = RandomGenerator.getInstance();
+			int k = rand.nextInt(1, 5);
+			add(randomZurag(k));
+		}
+	}
+}

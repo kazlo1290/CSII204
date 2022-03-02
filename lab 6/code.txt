@@ -1,0 +1,83 @@
+package lab6;
+import acm.program.*;
+import java.awt.event.*;
+import acm.graphics.*;
+
+public class Drawer extends GraphicsProgram {
+	public GLine zuraas;
+	public void mousePressed(MouseEvent MouseObject){
+		double x = MouseObject.getX();
+		double y = MouseObject.getY();
+		zuraas = new GLine(x, y, x ,y);
+		add(zuraas);
+	}
+	public void mouseDragged(MouseEvent MouseObject){
+		double x = MouseObject.getX();
+		double y = MouseObject.getY();
+		zuraas.setEndPoint(x, y);
+	}
+	public void run(){
+			addMouseListeners();
+	}
+}
+-----------------------------------------------------------------
+package lab6;
+import acm.program.*;
+
+import java.awt.Color;
+
+import acm.graphics.*;
+public class DrawDurs extends GraphicsProgram{
+	public void run(){
+		GLabel name = new GLabel("T.Bilguun", 40, 40);
+		name.setFont("SanSerif-Italic-25");
+		name.setColor(Color.ORANGE);
+		add(name);
+		GOval oval = new GOval(100, 60, 200, 100);
+		GRect rect = new GRect(100, 180, 200, 100);
+		rect.setFilled(true);
+		rect.setFillColor(Color.BLUE);
+		oval.setFilled(true);
+		oval.setFillColor(Color.RED);
+		add(rect);
+		add(oval);
+	}
+}
+
+----------------------------------------------------------------
+package lab6;
+import acm.program.*;
+import acm.graphics.*;
+import java.awt.*;
+public class ursdagText extends GraphicsProgram{
+	public void run(){
+		int n = 1000;
+//		double dx = (getWidth()) / n;
+//		double dy = (getHeight()) / n;
+		GLabel HodoldogText = new GLabel("I'm student + I study PAZ . . .", 100, 100);
+		HodoldogText.setFont("Times New Roman-72");
+		add(HodoldogText);
+		while(true){
+			HodoldogText.move(1, 0);
+			pause(20);
+		}
+//		for(int i=0; i<n; i++){
+//			HodoldogText.move(1, 0);
+//			pause(20);
+//		}
+	}
+}
+----------------------------------------------------------------------------
+package lab6;
+import acm.program.*;
+public class BasicsDemo extends ConsoleProgram {
+
+	public void run() {
+		int n, sum = 0;
+		for(int i=1; i<=10; i++){
+			sum += i;
+		}
+		print("1-ees 10 hurtelh tsipruudiin niilber: " + sum);
+	}
+
+}

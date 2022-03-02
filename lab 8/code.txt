@@ -1,0 +1,167 @@
+import acm.program.*;
+import acm.util.*;
+public class maxMinAverage extends ConsoleProgram {
+	public void run(){
+		double tooluur = 0, max = 0, min = 0, niilber = 0, too;
+		print("Ugugdsun toon daraalliin hamgiin ih, hamgiin baga, dundaj utgiig hevledeg program. Ta ehnii toogoo oruulna uu. ");
+		while(true){
+			if(tooluur == 0){
+				too = readInt("Ta ehnii toogoo oruulna uu: ");
+				if(too == 0){
+					while(too == 0){
+						too = readInt("0-ees omno ydaj neg too oruulna uu: ");
+					}
+				}
+				niilber += too;
+				max = too;
+				min = too;
+				tooluur++;
+			}
+			else if(tooluur > 0){
+				too = readInt("Ta daraagiin toog oruulna uu. Hervee toon daraalliig duusgah bol 0-iig oruulna uu: ");
+				if(too == 0)
+					break;
+				else {
+					niilber += too;
+					if(max < too)
+						max = too;
+					if(min > too && too != 0)
+						min = too;
+					tooluur++;
+				}
+			}
+		}
+		double dundaj = niilber / tooluur;
+		println("Hamgiin ih utga ni: " + max);
+		println("Hamgiin baga utga ni: " + min);
+		print("Dundaj utga ni: " + dundaj);
+	}
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+import acm.program.*;
+import acm.util.*;
+public class RandomSentence extends ConsoleProgram{
+	public void run(){
+		RandomGenerator rand = RandomGenerator.getInstance();
+		int a = rand.nextInt(1, 5);
+		int b = rand.nextInt(1, 5);
+		int c = rand.nextInt(1, 5);
+		print(getSentence(a, b, c));
+	}
+	public String getSubject(int s){
+		switch(s){
+			case 1:
+				return "Child";
+			case 2:
+				return "Father";
+			case 3:
+				return "Mother";
+			case 4:
+				return "Grandmother";
+			case 5:
+				return "Grandfather";
+		}
+		return "";
+	}
+	public String getVerb(int i){
+		switch(i){
+			case 1:
+				return "goes";
+			case 2:
+				return "likes";
+			case 3:
+				return "does";
+			case 4:
+				return "loves";
+			case 5:
+				return "hate";
+		}
+		return "";
+	}
+	public String getLocation(int v){
+		switch(v){
+			case 1:
+				return "teatre";
+			case 2:
+				return "cake";
+			case 3:
+				return "work";
+			case 4:
+				return "his/her hobby";
+			case 5:
+				return "car";
+		}
+		return "";
+	}
+	public String getSentence(int i, int j, int k){
+		return getSubject(i) + " " + getVerb(j) + " " + getLocation(k);
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+import acm.util.*;
+import acm.program.*;
+public class Arithmetics extends ConsoleProgram {
+	public static final char ADD = '+';
+	public static final char SUB = '-';
+	public static final char MULT = '*';
+	public static final char DIV = '/';
+	RandomGenerator rand = RandomGenerator.getInstance();
+	public void run() {
+		RandomGenerator rand = RandomGenerator.getInstance();
+		// n too sanamsargui sana
+		int n = rand.nextInt(0, 10);
+		// daraah uildliig n udaa davt
+		// 2 moo sanamsargui sana
+		// operator sanamsargui sana
+		// sanamsargui songoson 2 too bolon operatoriig ilerhiilel baidlaar haruulj garaas hariug unsh
+		// tus hariu zuv esehiig shalgaj medeel
+		for(int i=0; i<n; i++){
+			int a = rand.nextInt(1, 99);
+			int b = rand.nextInt(1, 99);
+			char op = nextOperator();
+			int hariu = readInt(a + " " + op + " " + b + " = " + "?");
+			if(hariu == calculate(a, b, op)){
+				println("Zuv hariullaa.");
+			}
+			else
+				println("Hariu: " + a + op + b + "=" + calculate(a,b,op));
+		}
+		
+	}
+	public static char nextOperator() {
+		RandomGenerator rand = RandomGenerator.getInstance();
+		switch (rand.nextInt(1, 4)) {
+		case 1:
+			return ADD;
+		case 2:
+			return SUB;
+		case 3:
+			return MULT;
+		default:
+			return DIV;
+		}
+	}
+	private int calculate(int first, int second, char op){
+		int result = 0;
+		switch (op) {
+		case ADD:
+			// нэмэх үйлдэл
+			result = first + second;
+			break;
+		case SUB:
+			// хасах үйлдэл
+			result = first - second;
+			break;
+		case MULT:
+			// үржих үйлдэл
+			result = first * second;
+			break;
+		case DIV:
+			// хуваах үйлдэл
+			result = first / second;
+			break;
+		}
+		return result;
+	}
+}
+---------------------------------------------------------------------------------------------------------------------------------------
